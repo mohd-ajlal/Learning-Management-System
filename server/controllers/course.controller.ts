@@ -4,6 +4,7 @@ import ErrorHandler from "../utils/ErrorHandler";
 import cloudinary from "cloudinary";
 import { createCourse } from "../services/course.service";
 import CourseModel from "../models/course.model";
+import { redis } from "../utils/redis";
 
 // upload course
 export const uploadCourse = CatchAsyncError(
@@ -71,14 +72,30 @@ export const editCourse = CatchAsyncError(
 export const getSingleCourse = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const course = await CourseModel.findById(req.params.id).select(
-        "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
-      );
+      const courseId = req.params.id;
+      const isCacheExist = await redis.get(courseId);
 
-      res.status(200).json({
-        success: true,
-        course,
-      });
+      if (isCacheExist) {
+        const course = JSON.parse(isCacheExist);
+        console.log("Hitting Redis...");
+        res.status(200).json({
+          success: true,
+          course,
+        });
+      } else {
+        const course = await CourseModel.findById(req.params.id).select(
+          "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
+        );
+
+        console.log("Hitting MongoDB...");
+
+        await redis.set(courseId, JSON.stringify(course));
+
+        res.status(200).json({
+          success: true,
+          course,
+        });
+      }
     } catch (error: any) {
       return next(new ErrorHandler(error.message, 500));
     }
@@ -90,14 +107,37 @@ export const getSingleCourse = CatchAsyncError(
 export const getAllCourses = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const courses = await CourseModel.find().select(
-        "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
-      );
+      const isCacheExist = await redis.get("allCourses");
 
-      res.status(200).json({
-        success: true,
-        courses,
-      });
+      if (isCacheExist) {
+        const courses = JSON.parse(isCacheExist);
+        console.log("Hitting Redis...");
+        res.status(200).json({
+          success: true,
+          courses,
+        });
+      } else {
+        const courses = await CourseModel.find().select(
+          "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
+        );
+
+        console.log("Hitting MongoDB...");
+
+        await redis.set("allCourses", JSON.stringify(courses));
+
+        res.status(200).json({
+          success: true,
+          courses,
+        });
+      }
+      //   const courses = await CourseModel.find().select(
+      //     "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
+      //   );
+
+      //   res.status(200).json({
+      //     success: true,
+      //     courses,
+      //   });
     } catch (error: any) {
       return next(new ErrorHandler(error.message, 500));
     }

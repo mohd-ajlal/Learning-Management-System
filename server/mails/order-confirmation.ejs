@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Order Confirmation
+    </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .course-info h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .first-td {
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+        }
+
+        .second-td {
+            text-align: left;
+        }
+
+        .table-row {
+            margin-bottom: 20px;
+        }
+
+        .col-2 {
+            text-align: right;
+            padding: 10px 0;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message-sm">
+            <h1>Your order is confirmed!</h1>
+            <p>
+                And we're just as excited as you are!
+            </p>
+        </div>
+        <br>
+        <div class="course-info">
+            <h4>Here's what you ordered:</h4>
+            <table style="border-bottom: 1px solid #0000002f;">
+                <tr>
+                    <td>
+                        Order #: <%= order._id %>
+                    </td>
+                    <td>
+                        Date: <%= order.date %>
+                    </td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td class="first-td">Item</td>
+                    <td class="first-td">Qty</td>
+                    <td class="first-td">Cost</td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td class="second-td"><%= order.name %></td>
+                    <td class="second-td">1</td>
+                    <td class="second-td">Rs. <%= order.price %></td>
+                </tr>
+            </table>
+
+            <table class="table-row" style="border-top:1px solid #00000029">
+                <tr>
+                    <td class="col-2">Subtotal:</td>
+                    <td class="col-2">Rs. <%= order.price %></td>
+                </tr>
+            </table>
+
+            <table class="table-row" style="margin-top: -20px;">
+                <tr>
+                    <td class="col-2">Total:</td>
+                    <td class="col-2">Rs. <%= order.price %></td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            <p>
+                If you have any questions, feel free to contact us at <a href="mailto:ajlal00786@gmail.com">ajlal00786@gmail.com</a>
+            </p>
+            <p>
+                &copy; 2024 Gravity Classes, Lucknow. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

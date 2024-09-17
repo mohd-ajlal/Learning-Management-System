@@ -63,7 +63,11 @@ courseRouter.get(
   getAllCourse
 );
 
-courseRouter.delete("/delete-course/:id", isAuthenticated, authorizeRoles("admin"),deleteCourse);
-
+courseRouter.delete(
+  "/delete-course/:id",
+  isAuthenticated,
+  authorizeRoles("admin"),
+  deleteCourse
+);
 
 export default courseRouter;

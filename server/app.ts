@@ -8,6 +8,7 @@ import userRouter from "./router/user.route";
 import courseRouter from "./router/course.route";
 import orderRouter from "./router/order.route";
 import notificationRouter from "./models/notification.route";
+import analyticsRouter from "./router/analytics.route";
 
 // body parser
 app.use(express.json({ limit: "50mb" }));
@@ -24,7 +25,7 @@ app.use(
 
 // routes
 
-app.use("/api/v1", userRouter, orderRouter, courseRouter, notificationRouter);
+app.use("/api/v1", userRouter, orderRouter, courseRouter, notificationRouter, analyticsRouter);
 // app.use("/api/v1", courseRouter);
 
 

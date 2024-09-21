@@ -92,9 +92,11 @@ export const getSingleCourse = CatchAsyncError(
           "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
         );
 
-        console.log("Hitting MongoDB...");
+        // console.log("Hitting MongoDB...");
 
-        await redis.set(courseId, JSON.stringify(course));
+
+
+        await redis.set(courseId, JSON.stringify(course), 'EX', 604800); // 7 days
 
         res.status(200).json({
           success: true,

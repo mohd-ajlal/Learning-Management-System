@@ -5,14 +5,17 @@ import React, { FC, useState } from "react";
 import NavItems from '../utils/NavItems'
 import ThemeSwitcher from '../utils/ThemeSwitcher'
 import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi";
+import CustomModel from "../utils/CustomModel";
 
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
   activeItem: number;
+  route:string;
+  setRoute:(route:string)=>void;
 };
 
-const Header: FC<Props> = ({activeItem, setOpen}) => {
+const Header: FC<Props> = ({activeItem, setOpen, route, open}) => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
 
@@ -27,18 +30,18 @@ const Header: FC<Props> = ({activeItem, setOpen}) => {
   }
 
 
-    const handleClose = (e:any) => {
+    const handleClose = (e: any) => {
         if(e.target.id === "screen"){
             setOpenSidebar(false);
         }
     };
   return (
-    <div className="w-full relative">
+    <div className="w-full relative ">
 
       <div
         className={`${
           active
-            ? "dark:bg-opacity-50 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black fixed top-0 left-0 w-full h-[80px] z-[80] border-b dark:border-[#ffffff1c] shadow-xl transition duration-500"
+            ? "dark:bg-opacity-50 dark:bg-gradient-to-b dark:from-[#a1c341] dark:to-[#3a4a11] bg-gradient-to-b from-white to-[#eaffb0] fixed top-0 left-0 w-full h-[80px] z-[80] border-b dark:border-[#ffffff1c] shadow-xl transition duration-500"
             : "w-full border-b dark:border-[#ffffff1c] h-[80px] z-[80] dark:shadow"
         }`}
       >
@@ -109,6 +112,18 @@ const Header: FC<Props> = ({activeItem, setOpen}) => {
             </div>
         )}
       </div>
+      {
+        route === "Login" && (
+          <>
+          {
+            open && (
+              <CustomModel/>
+            )
+          }
+          </>
+        )
+      }
+
     </div>
   );
 };

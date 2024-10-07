@@ -109,17 +109,41 @@ const Hero: FC<Props> = () => {
           </CarouselContent>
         </Carousel>
       </div> */}
-      <div className="relative w-full lg:w-1/2 flex justify-center lg:justify-end">
-        <div className="relative w-[50vh] h-[50vh] lg:w-[600px] lg:h-[600px] rounded-full overflow-hidden">
-          <Image
-            src="/assets/rupes.jpg"
-            alt="hero image"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-full"
-          />
-        </div>
-      </div>
+
+<div className="relative w-full lg:w-1/2 flex justify-center lg:justify-end">
+  <div className="relative w-[60vh] h-[60vh] lg:w-[700px] lg:h-[700px]"> {/* Increased container size */}
+    <div className="mx-auto max-w-xs lg:ml-8">
+      <Carousel
+        plugins={[AutoPlay({ delay: 2000 })]}
+        setApi={setApi}
+        className="w-full max-w-xs"
+      >
+        <CarouselContent>
+          {items.map((item, index) => (
+            <CarouselItem key={index}>
+              <Card className="w-80 border-none bg-gradient-to-b from-[#f1ffcb] to-[#a1c341] dark:bg-gradient-to-b dark:from-[#a1c341] dark:to-black duration-300"> {/* Increased card size */}
+                <CardHeader className="text-center">
+                  <CardTitle>{item.title}</CardTitle>
+                </CardHeader>
+                
+                <CardContent className="flex flex-col items-center justify-center p-6">
+                  <img 
+                    src={item.src}
+                    alt={item.title}
+                    className="h-80 w-80 object-cover mb-4" 
+                  />
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
+  </div>
+</div>
+
       {/* Hero Text and Search */}
       <div className="w-full lg:w-1/2 lg:pl-10 flex flex-col items-center lg:items-start text-center lg:text-left mt-10 lg:mt-0">
         <h2 className="text-2xl lg:text-5xl font-josefin font-semibold text-black dark:text-white mb-4 lg:mb-6 mt-[60px]">

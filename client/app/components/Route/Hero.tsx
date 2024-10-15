@@ -121,7 +121,7 @@ const Hero: FC<Props> = () => {
         <CarouselContent>
           {items.map((item, index) => (
             <CarouselItem key={index}>
-              <Card className="w-80 border-none bg-gradient-to-b from-[#f1ffcb] to-[#a1c341] dark:bg-gradient-to-b dark:from-[#a1c341] dark:to-black duration-300"> {/* Increased card size */}
+              <Card className="w-80 border-none bg-gradient-to-b from-white to-[#8AC7DB] dark:bg-gradient-to-b dark:from-gray-900 dark:to-black duration-300"> {/* Increased card size */}
                 <CardHeader className="text-center">
                   <CardTitle>{item.title}</CardTitle>
                 </CardHeader>

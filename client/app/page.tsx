@@ -28,6 +28,8 @@ const Page: FC<Props> = ()=>{
         
       />
       <Hero/>
+      
+      
     </div>
   )
 }

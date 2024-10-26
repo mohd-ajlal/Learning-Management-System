@@ -5,7 +5,9 @@ import React, { FC, useState } from "react";
 import NavItems from '../utils/NavItems'
 import ThemeSwitcher from '../utils/ThemeSwitcher'
 import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi";
-import CustomModel from "../utils/CustomModel";
+import CustomModal from "../utils/CustomModal";
+import Login from "../components/Auth/Login"
+import SignUp from "../components/Auth/SignUp"
 
 type Props = {
   open: boolean;
@@ -13,9 +15,9 @@ type Props = {
   activeItem: number;
   route:string;
   setRoute:(route:string)=>void;
-};
+}; 
 
-const Header: FC<Props> = ({activeItem, setOpen, route, open}) => {
+const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
 
@@ -30,8 +32,8 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open}) => {
   }
 
 
-    const handleClose = (e: any) => {
-        if(e.target.id === "screen"){
+    const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
+        if((e.target as HTMLElement).id === "screen"){
             setOpenSidebar(false);
         }
     };
@@ -117,7 +119,32 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open}) => {
           <>
           {
             open && (
-              <CustomModel/>
+              <CustomModal
+              open={open}
+              setOpen={setOpen}
+              activeItem={activeItem}
+              setRoute={setRoute}
+              component={Login}
+              />
+            )
+          }
+          </>
+        )
+      }
+
+
+{
+        route === "Sign-Up" && (
+          <>
+          {
+            open && (
+              <CustomModal
+              open={open}
+              setOpen={setOpen}
+              activeItem={activeItem}
+              setRoute={setRoute}
+              component={SignUp}
+              />
             )
           }
           </>

@@ -98,6 +98,7 @@ const Login: FC<Props> = ({setRoute}) => {
         <div className="w-full">
           <button
             type="submit"
+            value="Login"
             className={`${styles.button} hover:bg-blue-600 transition duration-300`}
           >
             Login

@@ -156,7 +156,7 @@ const SignUp: FC<Props> = ({setRoute}) => {
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
         <h5 className='text-center pt-4 font-Poppins text-[14px] text-black dark:text-white'>Or Join With</h5>
         <div className="w-full">
-        <div className="flex flex-col space-y-4">
+        {/* <div className="flex flex-col space-y-4">
         <button
             className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
             type="submit"
@@ -179,7 +179,24 @@ const SignUp: FC<Props> = ({setRoute}) => {
           </button>
 
           
-        </div>
+        </div> */}
+        <div className="flex items-center justify-center my-3 space-x-4">
+  <div
+    className="flex items-center cursor-pointer px-4 py-2 rounded-md shadow-input bg-gray-50 dark:bg-zinc-900 hover:bg-gray-200 dark:hover:bg-neutral-800"
+    // onClick={() => signIn("google")}
+  >
+    <FcGoogle size={20} className="mr-2" />
+    <span className="text-neutral-700 dark:text-neutral-300 text-sm">Google</span>
+  </div>
+  <div
+    className="flex items-center cursor-pointer px-4 py-2 rounded-md shadow-input bg-gray-50 dark:bg-zinc-900 hover:bg-gray-200 dark:hover:bg-neutral-800"
+// onClick={() => signIn("github")}
+  >
+    <AiFillGithub size={20} className="mr-2" />
+    <span className="text-neutral-700 dark:text-neutral-300 text-sm">GitHub</span>
+  </div>
+</div>
+
         </div>
         <h5 className='text-center pt-4 font-Poppins text-[14px]'>Already Have An Account?{" "}
           <span className='text-[#2190ff] pl-1 cursor-pointer'

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import NavItems from '../utils/NavItems'
 import ThemeSwitcher from '../utils/ThemeSwitcher'
 import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi";
@@ -9,6 +9,16 @@ import CustomModal from "../utils/CustomModal";
 import Login from "../components/Auth/Login"
 import SignUp from "../components/Auth/SignUp"
 import Verification from "../components/Auth/Verification"
+import { useSelector } from "react-redux";
+import Image from "next/image";
+// import { cn } from "@/lib/utils";
+// import { HoveredLink, Menu, MenuItem, ProductItem } from "../../components/ui/";
+
+import avatar from "../../public/assets/avatar.png";
+import { useSession } from "next-auth/react";
+import { useSocialAuthMutation } from "@/redux/features/auth/authApi";
+import toast from "react-hot-toast";
+
 
 type Props = {
   open: boolean;
@@ -19,8 +29,56 @@ type Props = {
 }; 
 
 const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
+  // const [active, setActive] = useState(false);
+  // const [openSidebar, setOpenSidebar] = useState(false);
+
+  // const {user} = useSelector((state:any) => state.auth);
+
+
+  // const data = useSession();
+
+  // const [socialAuth, { isSuccess }] = useSocialAuthMutation();
+
+  // useEffect(() => {
+  //   if(!user){
+  //     if(data){
+  //       socialAuth({
+  //         email:data?.user?.email,
+  //         name:data?.user?.name,
+  //         avatar:data?.user?.image
+  //       })
+  //     }
+  //   }
+
+  //   if(isSuccess){
+  //     toast.success("Login successfully")
+  //   }
+  // }, [data, user])
+
   const [active, setActive] = useState(false);
-  const [openSidebar, setOpenSidebar] = useState(false);
+const [openSidebar, setOpenSidebar] = useState(false);
+
+const { user } = useSelector((state: any) => state.auth);
+
+const { data: session } = useSession();
+
+const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
+
+useEffect(() => {
+  if (!user && session?.user) {
+    socialAuth({
+      email: session.user.email,
+      name: session.user.name,
+      avatar: session.user.image,
+    });
+  }
+  if(isSuccess){
+    toast.success("Login successfully")
+  }
+}, [session, user, socialAuth]); // Added socialAuth to the dependency array
+
+  
+  // console.log(data);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
@@ -38,6 +96,8 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
             setOpenSidebar(false);
         }
     };
+
+    // console.log(user)
   return (
     <div className="w-full relative ">
 
@@ -75,11 +135,27 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
                     />
                 
             </div>
-            <HiOutlineUserCircle
-                size={25}
-                className="hidden 900px:block cursor-pointer dark:text-white  text-black"
-                onClick={()=>setOpen(true)}
-                />
+           {
+            user? (
+            <Link href={"/profile"}>
+            <Image
+                src={user.avatar ? user.avatar : avatar}
+                alt={user?.name || "User Avatar"}
+                className="w-[30px] h-[30px] rounded-full"
+
+            />
+            </Link>
+              
+            
+              
+            ):(
+              <HiOutlineUserCircle
+              size={25}
+              className="hidden 900px:block cursor-pointer dark:text-white  text-black"
+              onClick={()=>setOpen(true)}
+              />
+            )
+           }
             </div>
 
          

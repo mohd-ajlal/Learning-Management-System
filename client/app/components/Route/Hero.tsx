@@ -20,6 +20,8 @@ import items from "./items.json";
 
 import { BackgroundBeamsWithCollision } from "../ui/background-beams-with-collision";
 
+import web from "../../../public/assets/web.png"
+
 const people = [
   {
     id: 1,
@@ -113,7 +115,14 @@ const Hero: FC<Props> = () => {
 <div className="relative w-full lg:w-1/2 flex justify-center lg:justify-end">
   <div className="relative w-[60vh] h-[60vh] lg:w-[700px] lg:h-[700px]"> {/* Increased container size */}
     <div className="mx-auto max-w-xs lg:ml-8">
-      <Carousel
+
+          <Image
+            src={web}
+            alt=""
+            className="object-contain 1100px:max-w-[500px] w-[500px]  1500px:max-w[85%] h-[auto] z-[10]"
+
+          />
+      {/* <Carousel
         plugins={[AutoPlay({ delay: 2000 })]}
         setApi={setApi}
         className="w-full max-w-xs"
@@ -121,7 +130,7 @@ const Hero: FC<Props> = () => {
         <CarouselContent>
           {items.map((item, index) => (
             <CarouselItem key={index}>
-              <Card className="w-80 border-none bg-gradient-to-b from-white to-[#8AC7DB] dark:bg-gradient-to-b dark:from-gray-900 dark:to-black duration-300"> {/* Increased card size */}
+              <Card className="w-80 border-none bg-gradient-to-b from-white to-[#8AC7DB] dark:bg-gradient-to-b dark:from-gray-900 dark:to-black duration-300"> 
                 <CardHeader className="text-center">
                   <CardTitle>{item.title}</CardTitle>
                 </CardHeader>
@@ -139,7 +148,7 @@ const Hero: FC<Props> = () => {
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
-      </Carousel>
+      </Carousel> */}
     </div>
   </div>
 </div>
@@ -159,10 +168,29 @@ const Hero: FC<Props> = () => {
           <p className="dark:text-white text-black text-center mt-2 ml-5">
             10k+ Students Already Trusted Us
           </p>
+
+          
           <Link href={"/courses"} className="text-[#39c1f3] mt-2 ml-2">
             View Courses
           </Link>
         </div>
+        <div className="1500px:w-[55%] 1100px:w-[78%] w-[90%] h-[50px] bg-transparent relative">
+            <input
+              type="search"
+              className="bg-white border dark:border-none dark:bg-black dark:placeholder:tex-[#ffffffdd] rounded-[5px] p-2 w-full h-full outline-none text-[#0000004e]  dark:text-[#ffffffe6] text-[20px]  "
+              placeholder="Search Courses...."
+              // value={search}
+              // onChange={(e:any) => setSearch(e.target.value)}
+            />
+
+            <div 
+            // onClick={handleSearch}
+            className="absolute flex items-center justify-center w-[50px] cursor-pointer h-[50px] right-0 top-0 bg-[#39c1f3] rounded-r-[5px]">
+              <BiSearch className="text-white" size={30} />
+            </div>
+          </div>
+          <br />
+          <br />
       </div>
     </div>
   );

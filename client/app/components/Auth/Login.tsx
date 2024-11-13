@@ -1,6 +1,6 @@
 'use client';
 
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { AiOutlineEye, AiOutlineEyeInvisible, AiFillGithub } from 'react-icons/ai';
@@ -14,9 +14,14 @@ import {
   IconBrandGoogle,
   IconBrandOnlyfans,
 } from "@tabler/icons-react";
+import { useLoginMutation } from '@/redux/features/auth/authApi';
+import toast from 'react-hot-toast';
+import {signIn} from "next-auth/react"
+
 
 type Props = {
   setRoute: (route: string) => void;
+  setOpen: (open: boolean) => void;
 };
 
 const schema = Yup.object().shape({
@@ -24,16 +29,36 @@ const schema = Yup.object().shape({
   password: Yup.string().required("Please enter your password").min(6),
 });
 
-const Login: FC<Props> = ({setRoute}) => {
+const Login: FC<Props> = ({setRoute, setOpen}) => {
   const [show, setShow] = useState(false);
+  const [login, {isSuccess, error}] = useLoginMutation()
+
 
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: schema,
     onSubmit: async ({ email, password }) => {
-      console.log(email, password);
+      // console.log(email, password);
+
+      await login({email, password})
     },
   });
+
+
+  useEffect(() => {
+    if(isSuccess){
+      toast.success("Login Successfully")
+      setOpen(false);
+    }
+
+    if(error){
+      if("data" in error){
+        const errorData = error as any;
+        toast.error(errorData.data.message) 
+      }
+    }
+  }, [isSuccess, error])
+  
 
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
@@ -96,42 +121,33 @@ const Login: FC<Props> = ({setRoute}) => {
         </LabelInputContainer >
 
         <div className="w-full">
-          <button
-            type="submit"
-            value="Login"
-            className={`${styles.button} hover:bg-blue-600 transition duration-300`}
-          >
-            Login
-          </button>
+        <input
+          type="submit"
+          name=""
+          value="Login"
+          onChange={handleChange}
+          className={`${styles.button}`}
+        />
         </div>
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
         <h5 className='text-center pt-4 font-Poppins text-[14px] text-black dark:text-white'>Or Join With</h5>
-        <div className="w-full">
-        <div className="flex flex-col space-y-4">
-        <button
-            className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-            type="submit"
-          >
-            <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-              Google
-            </span>
-            <BottomGradient />
-          </button>
-        <button
-            className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-            type="submit"
-          >
-            <IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-              GitHub
-            </span>
-            <BottomGradient />
-          </button>
+        <div className="flex items-center justify-center my-3 space-x-4">
+  <div
+    className="flex items-center cursor-pointer px-4 py-2 rounded-md shadow-input bg-gray-50 dark:bg-zinc-900 hover:bg-gray-200 dark:hover:bg-neutral-800"
+    onClick={() => signIn("google")}
+  >
+    <FcGoogle size={20} className="mr-2" />
+    <span className="text-neutral-700 dark:text-neutral-300 text-sm">Google</span>
+  </div>
+  <div
+    className="flex items-center cursor-pointer px-4 py-2 rounded-md shadow-input bg-gray-50 dark:bg-zinc-900 hover:bg-gray-200 dark:hover:bg-neutral-800"
+    onClick={() => signIn("github")}
+  >
+    <AiFillGithub size={20} className="mr-2" />
+    <span className="text-neutral-700 dark:text-neutral-300 text-sm">GitHub</span>
+  </div>
+</div>
 
-          
-        </div>
-        </div>
         <h5 className='text-center pt-4 font-Poppins text-[14px]'>Not Have An Account?{" "}
           <span className='text-[#2190ff] pl-1 cursor-pointer'
           onClick={()=>setRoute("Sign-Up")}

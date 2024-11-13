@@ -110,8 +110,8 @@ export const authApi = apiSlice.injectEndpoints({
             async onQueryStarted (arg,{queryFulfilled,dispatch}) {
                 try {
                    dispatch(
-                       userLoggedOut(
-                   ));
+                       userLoggedOut()
+                );
                 } catch (error:any) {
                    console.log(error);
                    

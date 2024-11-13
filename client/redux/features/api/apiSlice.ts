@@ -1,28 +1,26 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import { userLoggeedIn } from '../auth/authSlice';
+import {createApi,fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import { userLoggeedIn } from "../auth/authSlice";
 
-
-
-export const apiSlice  = createApi({
+export const apiSlice = createApi({
     reducerPath:"api",
-    baseQuery:fetchBaseQuery({baseUrl:process.env.NEXT_PUBLIC_SERVER_URI}),
-    endpoints:(builder)=>({
+    baseQuery:fetchBaseQuery({
+        baseUrl:process.env.NEXT_PUBLIC_SERVER_URI,
+
+    }),endpoints:(builder)  =>({
         refreshToken:builder.query({
-            query:(data)=>({
-                url:"refresh",
+            query:(data) =>({
+                url:"refreshtoken",
                 method:"GET",
-                credentials:"include" as const,
+                credentials:"include" as const
             })
         }),
-
-
-        loadUser: builder.query({
-            query:(data)=>({
+        loadUser:builder.query({
+            query:(data) =>({
                 url:"me",
                 method:"GET",
-                credentials:"include" as const,
+                credentials:"include" as const
             }),
-            async onQueryStarted(arg,{queryFulfilled,dispatch}) {
+            async onQueryStarted (arg,{queryFulfilled,dispatch}) {
                 try {
                    const result = await queryFulfilled;
                    dispatch(
@@ -37,10 +35,8 @@ export const apiSlice  = createApi({
                 }
            }
         }),
-
-
-    }),
+        
+    })
 })
 
-
-export const {useRefreshTokenQuery, useLazyLoadUserQuery} = apiSlice;
+export const {useRefreshTokenQuery,useLoadUserQuery} = apiSlice;

@@ -16,8 +16,9 @@ import Image from "next/image";
 
 import avatar from "../../public/assets/avatar.png";
 import { useSession } from "next-auth/react";
-import { useSocialAuthMutation } from "@/redux/features/auth/authApi";
+import { useLogOutQuery, useSocialAuthMutation } from "@/redux/features/auth/authApi";
 import toast from "react-hot-toast";
+import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 
 
 type Props = {
@@ -29,73 +30,50 @@ type Props = {
 }; 
 
 const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
-  // const [active, setActive] = useState(false);
-  // const [openSidebar, setOpenSidebar] = useState(false);
-
-  // const {user} = useSelector((state:any) => state.auth);
-
-
-  // const data = useSession();
-
-  // const [socialAuth, { isSuccess }] = useSocialAuthMutation();
-
-  // useEffect(() => {
-  //   if(!user){
-  //     if(data){
-  //       socialAuth({
-  //         email:data?.user?.email,
-  //         name:data?.user?.name,
-  //         avatar:data?.user?.image
-  //       })
-  //     }
-  //   }
-
-  //   if(isSuccess){
-  //     toast.success("Login successfully")
-  //   }
-  // }, [data, user])
-
   const [active, setActive] = useState(false);
-const [openSidebar, setOpenSidebar] = useState(false);
-
-const { user } = useSelector((state: any) => state.auth);
-
-const { data: session } = useSession();
-
-const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
-
-useEffect(() => {
-  if (!user && session?.user) {
-    socialAuth({
-      email: session.user.email,
-      name: session.user.name,
-      avatar: session.user.image,
-    });
-  }
-  if(isSuccess){
-    toast.success("Login successfully")
-  }
-}, [session, user, socialAuth]); // Added socialAuth to the dependency array
-
-  
-  // console.log(data);
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const {user} = useSelector((state:any)=>state.auth)
+// const {data:refetch} = useLoadUserQuery(undefined,{refetchOnMountOrArgChange:true})
+  const { data } = useSession();
+  const [logout, setLogout] = useState(false);
+  const [socialAuth, { isSuccess }] = useSocialAuthMutation();
+  const {} = useLogOutQuery(undefined, {
+    skip: !logout ? true : false,
+  });
+  useEffect(() => {
+      if (!user) {
+       if (data) {
+        socialAuth({
+          email: data?.user?.email,
+          name: data?.user?.name,
+          avatar: data?.user?.image,
+        });
+       }
+      }
+    if (data === null) {
+      if (isSuccess) {
+        toast.success("Login Succesful");
+      }
+    }
+    if (data === null) {
+      setLogout(true);
+    }
+  }, [data, user]);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 85) {
+      if (window.scrollY > 80) {
         setActive(true);
       } else {
         setActive(false);
       }
     });
   }
-
-
-    const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
-        if((e.target as HTMLElement).id === "screen"){
-            setOpenSidebar(false);
-        }
-    };
+  const handleClose = (e: any) => {
+    if (e.target.id === "screen") {
+      setOpenSidebar(false);
+    }
+  };
 
     // console.log(user)
   return (

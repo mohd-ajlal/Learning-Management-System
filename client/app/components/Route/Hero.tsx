@@ -113,7 +113,7 @@ const Hero: FC<Props> = () => {
       </div> */}
 
 <div className="relative w-full lg:w-1/2 flex justify-center lg:justify-end">
-  <div className="relative w-[60vh] h-[60vh] lg:w-[700px] lg:h-[700px]"> {/* Increased container size */}
+  <div className="relative  w-[60vh] h-[60vh]  rounded-full hero_animation 800px:h-[400px] 800px:w-[490px] 1100px:h-[500px] 1100px:w-[550px] 1500px:w-[500px] 1500px:h-[500px] 1500px:ml-14 1100px:mr-[100px] "> {/* Increased container size */}
     <div className="mx-auto max-w-xs lg:ml-8">
 
           <Image

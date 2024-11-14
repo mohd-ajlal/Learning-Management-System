@@ -30,8 +30,8 @@ const SideBarProfile: FC<Props> = ({
   const profileImage = user?.avatar?.url || avatar || avatarDefault;
 
   return (
-    <div className="w-full p-4 bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg shadow-lg mt-14 md:mt-0 md:w-64 lg:w-72">
-      <div className="flex items-center p-4 mb-4 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+    <div className="w-full p-4 bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg shadow-lg mt-14 md:mt-0 md:w-64 lg:w-64">
+      <div className="flex items-center p-4 mb-4 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
         <Image
           src={profileImage}
           alt="User Avatar"
@@ -59,7 +59,7 @@ const SideBarProfile: FC<Props> = ({
           height={30}
           className="rounded-full mr-3 md:mr-4"
         />
-        <span className="text-sm md:text-base">Account Overview</span>
+        <span className="text-sm md:text-base text-white">Account Overview</span>
       </div>
 
       <div
@@ -71,7 +71,7 @@ const SideBarProfile: FC<Props> = ({
         onClick={() => setActive(2)}
       >
         <RiLockPasswordLine size={18} className="mr-3 md:mr-4" />
-        <span className="text-sm md:text-base">Change Password</span>
+        <span className="text-sm md:text-base text-white">Change Password</span>
       </div>
 
       <div
@@ -83,7 +83,7 @@ const SideBarProfile: FC<Props> = ({
         onClick={() => setActive(3)}
       >
         <SiCoursera size={18} className="mr-3 md:mr-4" />
-        <span className="text-sm md:text-base">Enrolled Courses</span>
+        <span className="text-sm md:text-base text-white">Enrolled Courses</span>
       </div>
 
       {user?.role === "admin" && (

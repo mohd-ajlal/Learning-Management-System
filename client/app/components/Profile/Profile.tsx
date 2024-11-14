@@ -28,10 +28,11 @@ const Profile: FC<Props> = ({ user }) => {
   });
 
   const logOutHandler = async () => {
-      setLogout(true)
-    await signOut();
+    setLogout(true);
+    await signOut({ redirect: false });
     toast.success("Logged out successfully");
   };
+
 
   // Scroll effect for the sidebar
   if (typeof window !== "undefined") {

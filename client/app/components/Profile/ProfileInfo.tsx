@@ -75,7 +75,7 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
           accept="image/png, image/jpg, image/jpeg, image/webp"
         />
         <label htmlFor="avatar" className="absolute bottom-3 right-3">
-          <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center cursor-pointer shadow-md hover:shadow-lg transition-transform transform hover:scale-110 mr-[80vh]">
+          <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center cursor-pointer shadow-md hover:shadow-lg transition-transform transform hover:scale-110 mr-[48vh]">
             <AiOutlineCamera size={18} className="text-white" />
           </div>
         </label>

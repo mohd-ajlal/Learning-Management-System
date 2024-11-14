@@ -31,32 +31,35 @@ type Props = {
 
 const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
   const [active, setActive] = useState(false);
-  const [openSidebar, setOpenSidebar] = useState(false);
-  const {user} = useSelector((state:any)=>state.auth)
-// const {data:refetch} = useLoadUserQuery(undefined,{refetchOnMountOrArgChange:true})
+  const [openSideBar, setOpenSideBar] = useState(false);
+  const { user } = useSelector((state: any) => state.auth);
   const { data } = useSession();
-  const [logout, setLogout] = useState(false);
-  const [socialAuth, { isSuccess }] = useSocialAuthMutation();
+  const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
+  const [logout, setLogout] = useState(false)
   const {} = useLogOutQuery(undefined, {
     skip: !logout ? true : false,
-  });
+  })
+  
+  console.log("user data: ", data);
+  // if type of window missing
   useEffect(() => {
-      if (!user) {
-       if (data) {
+    if (!user) {
+      if (data) {
         socialAuth({
           email: data?.user?.email,
           name: data?.user?.name,
           avatar: data?.user?.image,
         });
-       }
-      }
-    if (data === null) {
-      if (isSuccess) {
-        toast.success("Login Succesful");
       }
     }
     if (data === null) {
-      setLogout(true);
+      if(isSuccess){
+        toast.success("Login Successfully");
+      }
+   
+    }
+    if(data === null){
+      setLogout(true)
     }
   }, [data, user]);
 
@@ -69,12 +72,53 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
       }
     });
   }
+
   const handleClose = (e: any) => {
     if (e.target.id === "screen") {
-      setOpenSidebar(false);
+      setOpenSideBar(false);
     }
   };
 
+  // console.log("open: ", open, "route: ", route);
+  // console.log("user: ", user);
+
+  // useEffect(() => {
+  //   if (!isLoading) {
+  //     if (!userData) {
+  //      if (data) {
+  //       socialAuth({
+  //         email: data?.user?.email,
+  //         name: data?.user?.name,
+  //         avatar: data?.user?.image,
+  //       });
+  //        refetch();
+  //      }
+  //     }
+  //   }
+  //   if (data === null) {
+  //     if (isSuccess) {
+  //       toast.success("Login Succesfull ");
+  //     }
+  //   }
+  //   if (data === null && !isLoading && !userData) {
+  //     setLogout(true); 
+  //   }
+  // }, [data, userData,isLoading,isSuccess]);
+
+  // if (typeof window !== "undefined") {
+  //   window.addEventListener("scroll", () => {
+  //     if (window.scrollY > 80) {
+  //       setActive(true);
+  //     } else {
+  //       setActive(false);
+  //     }
+  //   });
+  // }
+  // const handleClose = (e: any) => {
+  //   if (e.target.id === "screen") {
+  //     setOpenSidebar(false);
+  //   }
+  // };
     // console.log(user)
   return (
     <div className="w-full relative ">
@@ -117,9 +161,13 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
             user? (
             <Link href={"/profile"}>
             <Image
-                src={user.avatar ? user.avatar : avatar}
+                src={user.avatar ? user.avatar.url : avatar}
                 alt={user?.name || "User Avatar"}
-                className="w-[30px] h-[30px] rounded-full"
+                className="w-[30px] h-[30px] rounded-full cursor-pointer"
+                width={30}
+                height={30}
+
+                style={{border:activeItem === 6 ? "2px solid #ffc107" : "none"}}
 
             />
             </Link>
@@ -142,7 +190,7 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
 
 
         {/* mobile sidebar */}
-        {openSidebar && (
+        {openSideBar && (
             <div
             className="fixed w-full h-screen top-0 left-0 z-[99999] dark:bg-[unset] bg-[#00000024]"
             onClick={handleClose}

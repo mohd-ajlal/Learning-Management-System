@@ -101,7 +101,7 @@ const Sidebar = () => {
           transition: "all 0.2s ease-in-out",
         },
       }}
-      className="!bg-white dark:bg-[#111c43] shadow-lg rounded-xl p-2"
+      className=" shadow-lg rounded-xl p-2"
     >
       <ProSidebar
         collapsed={isCollapsed}

@@ -20,7 +20,7 @@ const Page: FC<Props> = (props) => {
         <div>
             <Protected>
                 <Heading
-                    title={`${user?.name} profile`}
+                    title={`${user?.name} profile || Gravity`}
                     description="Best IIT-JEE Coaching | Best NEET Coaching | Best FOUNDATION Coaching"
                     keywords="IIT, JEE, IIT-JEE, NEET, FOUNDATION, Coaching, Classes, Gravity, Gravity Coaching Classes, Engineering, Medical, Lucknow"
                 />

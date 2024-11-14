@@ -87,18 +87,14 @@ const SideBarProfile: FC<Props> = ({
       </div>
 
       {user?.role === "admin" && (
-        <Link href="/admin" shallow>
-          <div
-            className={`flex items-center p-3 mb-2 rounded-lg transition-all duration-200 cursor-pointer ${
-              active === 6
-                ? "bg-indigo-600 text-white"
-                : "hover:bg-gray-700 hover:text-indigo-200"
-            }`}
-            onClick={() => setActive(6)}
-          >
+        <Link href="/admin" shallow className={`flex items-center p-3 mb-2 rounded-lg transition-all duration-200 cursor-pointer ${
+          active === 6
+            ? "bg-indigo-600 text-white"
+            : "hover:bg-gray-700 hover:text-indigo-200"
+        }`}
+        >
             <MdOutlineAdminPanelSettings size={18} className="mr-3 md:mr-4" />
-            <span className="text-sm md:text-base">Admin Dashboard</span>
-          </div>
+            <span className="text-sm md:text-base text-white">Admin Dashboard</span>
         </Link>
       )}
 

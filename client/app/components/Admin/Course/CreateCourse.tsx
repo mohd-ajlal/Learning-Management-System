@@ -12,20 +12,21 @@ type Props = {};
 
 
 const CreateCourse: FC<Props> = (props: Props) => {
-  const [createCourse, { isLoading, isSuccess, error }] =
-    useCreateCourseMutation();
+  const [createCourse, {isLoading, isSuccess, error}] = useCreateCourseMutation();
+
   useEffect(() => {
-    if (isSuccess) {
-      toast.success("Course created Succesfully");
-      redirect("/admin/courses");
+    if(isSuccess){
+      toast.success("course created successfully")
+      redirect('/admin/courses');
     }
-    if (error) {
-      if ("data" in error) {
-        const errorMessage = error as any;
-        toast.error(errorMessage.data.message);
+    if(error){
+      if("data" in error){
+        const errorMessage = error as any
+        toast.error(errorMessage.data.message)
       }
     }
-  }, [isLoading, isSuccess, error]);
+   
+  },[isSuccess,isLoading, error])
 
   const [active, setActive] = useState(0);
   const [courseInfo, setCourseInfo] = useState({
@@ -100,12 +101,13 @@ const CreateCourse: FC<Props> = (props: Props) => {
     };
     setCourseData(data);
   };
-  const handleCourseCreate = async (e: any) => {
+  const handleCourseCreate =async(e:any) =>{
     const data = courseData;
-    if (!isLoading) {
-      await createCourse(data);
-    }
-  };
+     if (!isLoading) {
+       await createCourse(data)
+     }
+ }
+ 
 
   return (
     <div className="w-full flex  min-h-screen">

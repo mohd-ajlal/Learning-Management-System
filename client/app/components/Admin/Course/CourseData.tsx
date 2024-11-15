@@ -60,6 +60,7 @@ const CourseData: FC<Props> = ({
           <input
             key={index}
             type="text"
+            name="benifit"
             placeholder="e.g., Learn full-stack development"
             value={benefit.title}
             onChange={(e) => handleBenifitChange(index, e.target.value)}

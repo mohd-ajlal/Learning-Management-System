@@ -128,31 +128,40 @@ const AllCourses = (props: Props) => {
 
           {open && (
             <Modal
-              open={open}
-              onClose={() => setOpen(!open)}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
+            open={open}
+            onClose={() => setOpen(!open)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box
+              className={`absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 items-center justify-center 
+                w-auto m-[20px] p-[30px] rounded-lg shadow-lg 
+                bg-white dark:bg-[#021f57] dark:border dark:border-[#ffffff3b]`}
             >
-              <Box className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[450px] bg-white dark:bg-gray-900 rounded-lg shadow-xl p-6">
-                <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
-                  Are you sure you want to delete this course?
-                </h2>
-                <div className="flex justify-end space-x-4">
-                  <Button
-                    onClick={() => setOpen(!open)}
-                    className="bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-100 rounded-md px-4 py-2"
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    onClick={handleDelete}
-                    className="bg-red-500 hover:bg-red-600 text-white rounded-md px-4 py-2"
-                  >
-                    Delete
-                  </Button>
-                </div>
-              </Box>
-            </Modal>
+              <h1
+                className="text-lg font-semibold text-gray-800 dark:text-white text-center mb-6"
+              >
+                Are you sure you want to delete this course?
+              </h1>
+              <div className="w-full flex items-center justify-between">
+                <button
+                  className="px-4 py-2 rounded-md bg-green-500 text-white font-semibold transition-transform duration-200 
+                    hover:bg-green-600 hover:scale-105 dark:bg-green-600 dark:hover:bg-green-700 shadow-md"
+                  onClick={() => setOpen(!open)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="px-4 py-2 rounded-md bg-red-500 text-white font-semibold transition-transform duration-200 
+                    hover:bg-red-600 hover:scale-105 dark:bg-red-600 dark:hover:bg-red-700 shadow-md"
+                  onClick={handleDelete}
+                >
+                  Delete
+                </button>
+              </div>
+            </Box>
+          </Modal>
+          
           )}
         </Box>
       )}

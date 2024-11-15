@@ -115,7 +115,7 @@ const CourseContent: FC<Props> = ({
  console.log(courseContentData);
  
  return (
-  <div className="container mx-auto mt-12 p-5">
+  <div className="container mx-auto mt-12 p-5 ml-5">
     <form onSubmit={handleSubmit}>
       {courseContentData?.map((item: any, index: number) => {
         const showSectionInput =

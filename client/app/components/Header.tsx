@@ -160,11 +160,11 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
                 
             </div>
            {
-            userData? (
+            user? (
             <Link href={"/profile"}>
             <Image
-                src={userData.avatar ? userData.avatar.url : avatar}
-                alt={userData?.name || "User Avatar"}
+                src={user.avatar ? user.avatar.url : avatar}
+                alt={user?.name || "User Avatar"}
                 className="w-[30px] h-[30px] rounded-full cursor-pointer"
                 width={30}
                 height={30}

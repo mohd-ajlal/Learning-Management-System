@@ -60,7 +60,7 @@ const CourseData: FC<Props> = ({
           <input
             key={index}
             type="text"
-            name="benifit"
+            name="benefit"
             placeholder="e.g., Learn full-stack development"
             value={benefit.title}
             onChange={(e) => handleBenifitChange(index, e.target.value)}
@@ -77,12 +77,12 @@ const CourseData: FC<Props> = ({
         <label className="block text-[18px] font-semibold text-gray-800 dark:text-gray-300 mb-2">
           Prerequisites for this course
         </label>
-        {preRequisites.map((prerequisite, index) => (
+        {preRequisites.map((prerequisites, index) => (
           <input
             key={index}
             type="text"
             placeholder="e.g., Basic knowledge of JavaScript"
-            value={prerequisite.title}
+            value={prerequisites.title}
             onChange={(e) => handlePrerequisiteChange(index, e.target.value)}
             className="w-full mb-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-[#222] text-gray-900 dark:text-gray-200 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#4a90e2]"
           />

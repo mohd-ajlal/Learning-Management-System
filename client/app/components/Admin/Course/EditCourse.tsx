@@ -52,7 +52,7 @@ useEffect (() => {
       });
   
       setBenefits(editCourseData.benefits || [{ title: "" }]); // Fallback to default array
-      setPrerequisites(editCourseData.prerequisites || [{ title: "" }]); // Fallback to default array
+      setPrerequisites(editCourseData.preRequisites || [{ title: "" }]); // Fallback to default array
       setCourseContentData(editCourseData.courseData || []);
     }
   }, [editCourseData]);
@@ -113,7 +113,7 @@ useEffect (() => {
       demoUrl:courseInfo.demoUrl,
       totalVideos:courseContentData.length,
       benefits:formattedBenefits,
-      prerequisites:formattedPrerequisites,
+      preRequisites:formattedPrerequisites,
       courseData:formattedCourseContentData,
     }
 

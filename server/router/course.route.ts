@@ -28,6 +28,7 @@ courseRouter.post(
 
 courseRouter.put(
   "/edit-course/:id",
+  updateAccessToken,
   isAuthenticated,
   authorizeRoles("admin"),
   editCourse

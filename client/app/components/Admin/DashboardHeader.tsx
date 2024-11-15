@@ -21,10 +21,11 @@ const DashboardHeader: FC<Props> = () => {
                 </span>
             </div>
             {open && (
-                <div 
-                    className='w-[350px] h-[50vh] dark:bg-[#111C43] bg-white shadow-xl absolute top-16 z-10 rounded-lg overflow-y-auto transition-opacity duration-500 transform ease-out'
-                    style={{ animation: 'fade-in 0.3s' }}
-                >
+                <div
+                className='w-[350px] h-[50vh] dark:bg-[#111C43] bg-white shadow-xl absolute top-16 z-[1000] rounded-lg overflow-y-auto transition-opacity duration-500 transform ease-out'
+                style={{ animation: 'fade-in 0.3s' }}
+            >
+            
                     <h5 className='text-center text-[20px] font-Poppins text-black dark:text-white p-3 border-b border-gray-300 dark:border-[#ffffff47]'>
                         Notifications
                     </h5>

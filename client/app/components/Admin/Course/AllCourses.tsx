@@ -86,7 +86,7 @@ const AllCourses = (props: Props) => {
   };
 
   return (
-    <div className="mt-[120px] ml-6">
+    <div className="mt-[120px] ml-5">
       {isLoading ? (
         <Loader />
       ) : (

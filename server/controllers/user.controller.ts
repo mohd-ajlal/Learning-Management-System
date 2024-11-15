@@ -461,15 +461,17 @@ export const getAllUsers = CatchAsyncError(async(req:Request, res:Response, next
 
 // update user role || only for admin
 
-export const updateUserRole =CatchAsyncError(async(req:Request, res:Response, next:NextFunction)=>{
-  try {
-    const {id, role} = req.body;
-
-    updateUserRoleService(res, id, role);
-  } catch (error: any) {
-    return next(new ErrorHandler(error.message, 400));
+export const updateUserRole = CatchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { email, role } = req.body;
+      updateUserRoleService(res, email, role);
+    } catch (error: any) {
+      console.log(error.message);
+      return next(new ErrorHandler("Failed to Update User Role", 400));
+    }
   }
-})
+);
 
 
 // delete user || only for admin

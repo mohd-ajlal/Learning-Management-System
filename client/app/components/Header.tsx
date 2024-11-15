@@ -34,6 +34,9 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
   const [openSideBar, setOpenSideBar] = useState(false);
   const { user } = useSelector((state: any) => state.auth);
   const { data } = useSession();
+  //  const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {
+  //   refetchOnMountOrArgChange: true,
+  // });
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
   const [logout, setLogout] = useState(false)
   const {} = useLogOutQuery(undefined, {
@@ -41,7 +44,6 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
   })
   
   console.log("user data: ", data);
-  // if type of window missing
   useEffect(() => {
     if (!user) {
       if (data) {
@@ -153,7 +155,7 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
                     <HiOutlineMenuAlt3
                     size={25}
                     className="cursor-pointer dark:text-white  text-black"
-                    onClick={()=>setOpenSidebar(true)}
+                    onClick={()=>setOpenSideBar(true)}
                     />
                 
             </div>

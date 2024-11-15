@@ -34,9 +34,9 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
   const [openSideBar, setOpenSideBar] = useState(false);
   const { user } = useSelector((state: any) => state.auth);
   const { data } = useSession();
-  //  const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {
-  //   refetchOnMountOrArgChange: true,
-  // });
+   const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
   const [logout, setLogout] = useState(false)
   const {} = useLogOutQuery(undefined, {
@@ -44,26 +44,26 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
   })
   
   console.log("user data: ", data);
-  useEffect(() => {
-    if (!user) {
-      if (data) {
-        socialAuth({
-          email: data?.user?.email,
-          name: data?.user?.name,
-          avatar: data?.user?.image,
-        });
-      }
-    }
-    if (data === null) {
-      if(isSuccess){
-        toast.success("Login Successfully");
-      }
+  // useEffect(() => {
+  //   if (!user) {
+  //     if (data) {
+  //       socialAuth({
+  //         email: data?.user?.email,
+  //         name: data?.user?.name,
+  //         avatar: data?.user?.image,
+  //       });
+  //     }
+  //   }
+  //   if (data === null) {
+  //     if(isSuccess){
+  //       toast.success("Login Successfully");
+  //     }
    
-    }
-    if(data === null){
-      setLogout(true)
-    }
-  }, [data, user]);
+  //   }
+  //   if(data === null){
+  //     setLogout(true)
+  //   }
+  // }, [data, user]);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
@@ -84,28 +84,28 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
   // console.log("open: ", open, "route: ", route);
   // console.log("user: ", user);
 
-  // useEffect(() => {
-  //   if (!isLoading) {
-  //     if (!userData) {
-  //      if (data) {
-  //       socialAuth({
-  //         email: data?.user?.email,
-  //         name: data?.user?.name,
-  //         avatar: data?.user?.image,
-  //       });
-  //        refetch();
-  //      }
-  //     }
-  //   }
-  //   if (data === null) {
-  //     if (isSuccess) {
-  //       toast.success("Login Succesfull ");
-  //     }
-  //   }
-  //   if (data === null && !isLoading && !userData) {
-  //     setLogout(true); 
-  //   }
-  // }, [data, userData,isLoading,isSuccess]);
+  useEffect(() => {
+    if (!isLoading) {
+      if (!userData) {
+       if (data) {
+        socialAuth({
+          email: data?.user?.email,
+          name: data?.user?.name,
+          avatar: data?.user?.image,
+        });
+         refetch();
+       }
+      }
+    }
+    if (data === null) {
+      if (isSuccess) {
+        toast.success("Login Succesfull ");
+      }
+    }
+    if (data === null && !isLoading && !userData) {
+      setLogout(true); 
+    }
+  }, [data, userData,isLoading,isSuccess]);
 
   // if (typeof window !== "undefined") {
   //   window.addEventListener("scroll", () => {
@@ -160,11 +160,11 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
                 
             </div>
            {
-            user? (
+            userData? (
             <Link href={"/profile"}>
             <Image
-                src={user.avatar ? user.avatar.url : avatar}
-                alt={user?.name || "User Avatar"}
+                src={userData.avatar ? userData.avatar.url : avatar}
+                alt={userData?.name || "User Avatar"}
                 className="w-[30px] h-[30px] rounded-full cursor-pointer"
                 width={30}
                 height={30}

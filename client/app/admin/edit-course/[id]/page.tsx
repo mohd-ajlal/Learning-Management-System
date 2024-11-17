@@ -14,11 +14,11 @@ const page = ({params}:any) => {
     const id = params?.id
     return (
         <div>
-            <Heading 
-            title='ELearn - Admin'
-            description='ELearn is a platform for learning'
-            keywords='Learning, Programming'
-            />
+            <Heading
+        title='Gravity - Admin'
+        description='Gravity is an online learning platform for students'
+        keywords='Gravity, online learning, education, courses'
+    />
             <div className='flex h-auto'>
                 <div className='1500px:w-[16%] w-1/5'>
                     <AdminSidebar />

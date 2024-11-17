@@ -1,6 +1,3 @@
-# Learning-Management-System
- LMS
-
 
 
 

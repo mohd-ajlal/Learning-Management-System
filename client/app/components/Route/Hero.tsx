@@ -21,6 +21,7 @@ import items from "./items.json";
 import { BackgroundBeamsWithCollision } from "../ui/background-beams-with-collision";
 
 import web from "../../../public/assets/web.png"
+import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
 
 const people = [
   {
@@ -65,6 +66,7 @@ const people = [
 type Props = {};
 
 const Hero: FC<Props> = () => {
+  const { data,refetch } = useGetHeroDataQuery("Banner", {});
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -117,7 +119,9 @@ const Hero: FC<Props> = () => {
     <div className="mx-auto max-w-xs lg:ml-8">
 
           <Image
-            src={web}
+            src={data?.layout?.banner?.image?.url || web}
+            width={400}
+            height={400}
             alt=""
             className="object-contain 1100px:max-w-[500px] w-[500px]  1500px:max-w[85%] h-[auto] z-[10]"
 
@@ -155,12 +159,22 @@ const Hero: FC<Props> = () => {
 
       {/* Hero Text and Search */}
       <div className="w-full lg:w-1/2 lg:pl-10 flex flex-col items-center lg:items-start text-center lg:text-left mt-10 lg:mt-0">
-        <h2 className="text-2xl lg:text-5xl font-josefin font-semibold text-black dark:text-white mb-4 lg:mb-6 mt-[60px]">
+        {/* <h2 className="text-2xl lg:text-5xl font-josefin font-semibold text-black dark:text-white mb-4 lg:mb-6 mt-[60px]">
         Welcome to Gravity Classes
         </h2>
         <p className="text-md lg:text-lg font-josefin font-semibold text-black dark:text-white mb-6">
         Best IIT-JEE Coaching | Best NEET Coaching | Best FOUNDATION Coaching
-        </p>
+        </p> */}
+
+<h2 className="dark:text-white text-[#000000c7] text-[30px] px-3 w-full 1000px:text-[70px] font-[600] font-Josefin py-2 1000px:leading-[75px] 1500px:w-[60%] 1100px:w-[78%]">
+              {data?.layout?.banner?.title}
+            </h2>
+            <br />
+            <p className="dark:text-[#edfff4] text-[#000000ac] font-Josefin font-[600] text-[18px] 1500px:!w-[55%] 1100px:!w-[78%]">
+              {data?.layout?.banner?.subTitle}
+            </p>
+            <br />
+            <br />
 
         {/* Tooltip or additional content */}
         <div className="flex items-center justify-center mb-10">

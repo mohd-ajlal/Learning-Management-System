@@ -58,7 +58,11 @@ Ensure you have the following installed:
 
 ### Clone the Repository
 ```bash
+<<<<<<< HEAD
 git clone https://github.com/modajlal/Learning-Management-System.git
+=======
+git clone https://github.com/mohdajlal/Learning-Management-System.git
+>>>>>>> 66ee5ee53e6871a9ffb62026197b8aa6717b78db
 cd lms-project
 ```
 

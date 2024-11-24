@@ -3,7 +3,7 @@ import { apiSlice } from "../api/apiSlice";
 export const layoutApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getHeroData: builder.query({
-      query: (type: any) => ({
+      query: (type) => ({
         url: `get-layout/${type}`,
         method: "GET",
         credentials: "include" as const,
@@ -27,4 +27,4 @@ export const layoutApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetHeroDataQuery, useEditLayoutMutation } = layoutApi;
+export const { useGetHeroDataQuery,useEditLayoutMutation } = layoutApi; 

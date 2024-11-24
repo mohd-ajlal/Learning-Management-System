@@ -84,6 +84,7 @@ const Hero: FC<Props> = () => {
     });
   }, [api]);
   return (
+    
     <div className="relative w-full flex flex-col lg:flex-row items-center lg:items-start py-10 lg:py-20 px-4 lg:px-8">
       {/* Hero Image */}
       {/* <div className="mx-auto max-w-xs lg:ml-8">

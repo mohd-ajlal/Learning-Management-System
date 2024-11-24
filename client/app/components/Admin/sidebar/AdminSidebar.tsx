@@ -311,7 +311,7 @@ const Sidebar = () => {
               className="!text-[20px] capitalize text-black dark:text-[#ffffffc1]"
               sx={{ m: "15px 0 5px 25px " }}
             >
-              {!isCollapsed && "Curstomization"}
+              {!isCollapsed && "Customization"}
             </Typography>
             <Item
               title="Hero"
@@ -328,7 +328,7 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Categoris"
+              title="Categories"
               to="/admin/categories"
               icon={<WysiwygIcon />}
               selected={selected}

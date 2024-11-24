@@ -3,7 +3,11 @@ import ThemeSwitcher from '@/app/utils/ThemeSwitcher';
 import React, { FC, useState } from 'react';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 
-interface Props {}
+type Props = {
+    open?: boolean;
+    setOpen?: any;
+  };
+  
 
 const DashboardHeader: FC<Props> = () => {
     const [open, setOpen] = useState(false);

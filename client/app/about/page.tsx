@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Header from "../components/Header";
 import Heading from "../utils/Heading";
+import Footer from "../components/Footer"
 
 type Props = {};
 
@@ -113,6 +114,7 @@ const page = (props: Props) => {
               ))}
             </div>
           </section>
+          <Footer />
         </div>
         </>
       );

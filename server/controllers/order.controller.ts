@@ -9,6 +9,9 @@ import ejs from "ejs";
 import sendMail from "../utils/sendMail";
 import NotificationModel from "../models/notification.model";
 import { getAllOrdersService, newOrder } from "../services/order.service";
+import { redis } from "../utils/redis";
+require("dotenv").config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // create order
 
@@ -16,6 +19,22 @@ export const createOrder = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { courseId, payment_info } = req.body as IOrder;
+
+      // if(payment_info){
+      //   if("id" in payment_info){
+      //     const paymentIntendId = payment_info.id;
+      //     const paymentIntend = await stripe.paymentIntend.retrieve(
+      //       paymentIntendId
+      //     );
+
+      //     if(paymentIntend.status !== "succeeded"){
+      //       return next(new ErrorHandler("Payment failed", 400));
+      //     }
+      //   }
+      // }
+      if (!req.user) {
+        return next(new ErrorHandler("User not authenticated", 401));
+      }
       const user = await userModel.findById(req.user?._id);
 
       const courseExistInUser = user?.courses.some(
@@ -32,6 +51,9 @@ export const createOrder = CatchAsyncError(
 
       if (!course) {
         return next(new ErrorHandler("Course not found", 404));
+      }
+      if (!payment_info) {
+        return next(new ErrorHandler("Payment info is missing", 400));
       }
 
       const data: any = {
@@ -73,6 +95,12 @@ export const createOrder = CatchAsyncError(
 
       user?.courses.push(course?._id as any);
 
+      if (req.user?._id) {
+        await redis.set(req.user._id, JSON.stringify(user));
+      } else {
+        throw new ErrorHandler("User ID is undefined", 400);
+      }
+
       await user?.save();
 
       await NotificationModel.create({
@@ -102,6 +130,52 @@ export const getAllOrders = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       getAllOrdersService(res);
+    } catch (error: any) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  }
+);
+
+
+//  send stripe publishble key
+export const sendStripePublishableKey = CatchAsyncError(
+  async (req: Request, res: Response) => {
+    res.status(200).json({
+      publishablekey: process.env.STRIPE_PUBLISHABLE_KEY,
+    });
+  }
+);
+
+
+// new payment
+export const newPayment = CatchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const myPayment = await stripe.paymentIntents.create({
+        amount: req.body.amount,
+        currency: "USD",
+        description: "Gravity",
+        metadata: {
+          company: "NUTAJ",
+        },
+        automatic_payment_methods: {
+          enabled: true,
+        },
+        shipping: {
+          name: "Mohd Ajlal",
+          address: {
+            line1: "H Block Hostel",
+            postal_code: "281406",
+            city: "Mathura",
+            state: "UP",
+            country: "IN",
+          },
+        },
+      });
+      res.status(201).json({
+        success: true,
+        client_secret: myPayment.client_secret,
+      });
     } catch (error: any) {
       return next(new ErrorHandler(error.message, 500));
     }

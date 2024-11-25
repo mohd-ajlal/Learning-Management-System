@@ -62,7 +62,7 @@ const page = (props: Props) => {
         route={route}
         
       />
-        <div className="m-8 bg-gradient-to-b from-blue-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-lg">
+        <div className="mt-8 ml-8 mr-8 bg-gradient-to-b from-blue-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-lg">
           {/* Project Section */}
           <section className="text-center">
             <h1 className="text-4xl font-bold text-gradient bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">

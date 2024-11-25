@@ -5,8 +5,8 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <footer className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-10">
-      <div className="border-t border-gray-300 dark:border-gray-700 my-2" />
+    <footer className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 mb-2">
+      <div className="border-t border-gray-300 dark:border-gray-700 my-6" />
       <div className="w-[95%] 800px:w-full 800px:max-w-[85%] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* About Section */}

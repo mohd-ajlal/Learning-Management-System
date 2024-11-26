@@ -19,6 +19,8 @@ const PageContent = () => {
   const [open, setOpen] = useState(false);
   const [courses, setCourses] = useState<any[]>([]);
   const [category, setCategory] = useState("All");
+  const [activeItem, setActiveItem] = useState(2);
+
 
   useEffect(() => {
     if (error) {
@@ -55,7 +57,7 @@ const PageContent = () => {
         setRoute={setRoute}
         open={open}
         setOpen={setOpen}
-        activeItem={1}
+        activeItem={2}
       />
       <div className="w-[95%] 800px:w-[85%] m-auto min-h-[70vh]">
       <Heading

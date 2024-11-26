@@ -134,7 +134,7 @@ const Page = (props: Props) => {
       </div>
     </div>
     <Footer />
-      <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-blue-400 blur-xl opacity-30"></div>
+      {/* <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-blue-400 blur-xl opacity-30"></div> */}
     </>
   );
 };

@@ -258,7 +258,7 @@ const CourseContentMedia = ({
       </div>
       <br />
       {activeBar === 0 && (
-        <p className="text-[18px] whitespace-pre-line mb-3 dark:text-white text-black">
+        <p className="text-[18px] whitespace-pre-line mb-3 dark:text-white text-black pb-10">
           {data[activeVideo]?.description}
         </p>
       )}

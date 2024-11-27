@@ -76,7 +76,7 @@ const Sidebar = () => {
       backdropFilter: "blur(10px)",
       borderRadius: "20px",
       border: `2px solid ${theme === "dark" ? "#6870fa" : "#5b6fe6"}`,
-      transition: "all 0.3s ease", // Smooth background and border transition
+      transition: "all 0.3s ease", 
     },
     "& .pro-icon-wrapper": {
       backgroundColor: "transparent !important",
@@ -84,7 +84,7 @@ const Sidebar = () => {
     "& .pro-inner-item:hover": {
       color: "#868dfb !important",
       transform: "scale(1.05)",
-      transition: "transform 0.2s ease-in-out, color 0.3s ease-in-out", // Make hover effect smoother
+      transition: "transform 0.2s ease-in-out, color 0.3s ease-in-out", 
       cursor: "pointer",
     },
     "& .pro-menu-item.active": {
@@ -93,11 +93,11 @@ const Sidebar = () => {
         ? "rgba(104, 112, 250, 0.3)"
         : "rgba(91, 111, 230, 0.2)"}`,
       borderRadius: "8px",
-      transition: "all 0.3s ease", // Smooth transition for active state
+      transition: "all 0.3s ease",
     },
     "& .pro-inner-item": {
       padding: "10px 35px 10px 20px !important",
-      transition: "all 0.2s ease-in-out", // Smooth item transition
+      transition: "all 0.2s ease-in-out",
     },
   }}
   className="shadow-lg rounded-xl p-2"

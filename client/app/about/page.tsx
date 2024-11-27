@@ -19,25 +19,25 @@ const teamMembers = [
     {
       name: "Dheeraj Kumar",
       role: "Full Stack Developer",
-      avatar: "/assets/photo.jpg",
+      avatar: "/assets/dheeraj.webp",
       bio: "Dheeraj is a problem-solving enthusiast who creates seamless back-end and front-end solutions with a focus on user experience.",
     },
     {
       name: "Madhu Solanki",
       role: "Content Maker",
-      avatar: "/assets/photo.jpg",
+      avatar: "/assets/madhu.jpg",
       bio: "Madhu crafts engaging and educational content that bridges the gap between complex ideas and user understanding.",
     },
     {
       name: "Arsh Agrawal",
       role: "UI/UX Designer",
-      avatar: "/assets/photo.jpg",
+      avatar: "/assets/arsh.jpg",
       bio: "Arsh transforms ideas into visually stunning interfaces, ensuring intuitive and user-centric designs.",
     },
     {
       name: "Abhishek Soni",
       role: "UI/UX Designer",
-      avatar: "/assets/photo.jpg",
+      avatar: "/assets/abhishek.jpg",
       bio: "Abhishek creates elegant and functional designs, focusing on delivering exceptional user experiences.",
     },
   ];

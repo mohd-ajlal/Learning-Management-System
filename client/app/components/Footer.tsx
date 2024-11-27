@@ -139,7 +139,7 @@ const Footer = (props: Props) => {
             © 2024 Gravity | All Rights Reserved
           </p>
           <p className="text-sm mt-2 text-gray-600 dark:text-gray-400">
-            Designed and Developed with 💻 by Mohd Ajlal
+            Designed and Developed 💻 by Nutaj
           </p>
         </div>
       </div>

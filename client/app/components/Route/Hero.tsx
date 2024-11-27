@@ -189,7 +189,7 @@ const Hero: FC<Props> = () => {
             View Courses
           </Link>
         </div>
-        <div className="1500px:w-[55%] 1100px:w-[78%] w-[90%] h-[50px] bg-transparent relative">
+        {/* <div className="1500px:w-[55%] 1100px:w-[78%] w-[90%] h-[50px] bg-transparent relative">
             <input
               type="search"
               className="bg-white border dark:border-none dark:bg-black dark:placeholder:tex-[#ffffffdd] rounded-[5px] p-2 w-full h-full outline-none text-[#0000004e]  dark:text-[#ffffffe6] text-[20px]  "
@@ -203,7 +203,7 @@ const Hero: FC<Props> = () => {
             className="absolute flex items-center justify-center w-[50px] cursor-pointer h-[50px] right-0 top-0 bg-[#39c1f3] rounded-r-[5px]">
               <BiSearch className="text-white" size={30} />
             </div>
-          </div>
+          </div> */}
           <br />
           <br />
         

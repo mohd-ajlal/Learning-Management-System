@@ -57,7 +57,7 @@ const Reviews = (props: Props) => {
           {/* Image Section */}
           <div className="800px:w-[50%] w-full relative">
             <Image
-              src="/assets/photo.jpg"
+              src="/assets/background1.svg"
               alt="Students celebrating"
               width={700}
               height={700}

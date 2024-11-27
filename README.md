@@ -80,14 +80,41 @@ Create `.env` files in the root directories of `client` and `server` and include
 
 **Server `.env`:**
 ```
-MONGO_URI=your_mongodb_connection_string
-REDIS_URI=your_redis_connection_string
-JWT_SECRET=your_jwt_secret
+PORT=8000                                             # Port for the backend server
+ORIGIN=['http://localhost:3000/']                     # Allowed origins for CORS
+NODE_ENV=development                                  # Environment (development/production)
+DB_URL=                                               # Database connection string
+CLOUD_NAME=                                           # Cloudinary cloud name
+CLOUD_API_KEY=                                        # Cloudinary API key
+CLOUD_SECRET_KEY=                                     # Cloudinary secret key
+REDIS_URL=                                            # Redis connection string
+
+ACTIVATION_SECRET=                                    # Secret for account activation token
+
+ACCESS_TOKEN=                                         # JWT access token secret
+REFRESH_TOKEN=                                        # JWT refresh token secret
+
+ACCESS_TOKEN_EXPIRE=5                                 # Access token expiry time in minutes
+REFRESH_TOKEN_EXPIRE=7                                # Refresh token expiry time in days
+
+SMTP_HOST=smtp.gmail.com                              # SMTP host for email service
+SMTP_PORT=465                                         # SMTP port (default for Gmail)
+SMTP_SERVICE=gmail                                    # Email service provider
+SMTP_MAIL=                                            # Email ID for SMTP
+SMTP_PASSWORD=                                        # Password for SMTP email account
+VDOCIPHER_API_SECRET=                                 # VdoCipher API secret for video streaming
+STRIPE_PUBLISHABLE_KEY=                               # Stripe publishable key for payments
+STRIPE_SECRET_KEY=                                    # Stripe secret key for payments
 ```
 
 **Client `.env`:**
 ```
-NEXT_PUBLIC_API_URL=your_backend_api_url
+NEXT_PUBLIC_SERVER_URI="http://localhost:8000/api/v1/" # API Base URL for the backend server
+GOOGLE_CLIENT_ID=                                     # Google OAuth Client ID
+GOOGLE_CLIENT_SECRET=                                 # Google OAuth Client Secret
+GITHUB_CLIENT_ID=                                     # GitHub OAuth Client ID
+GITHUB_CLIENT_SECRET=                                 # GitHub OAuth Client Secret
+SECRET=                                               # A secret string used for session management or JWT signing
 ```
 
 ### Run the Application

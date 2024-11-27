@@ -24,7 +24,7 @@ const teamMembers = [
     },
     {
       name: "Madhu Solanki",
-      role: "Content Maker",
+      role: "Front-end || Content Maker",
       avatar: "/assets/madhu.jpg",
       bio: "Madhu crafts engaging and educational content that bridges the gap between complex ideas and user understanding.",
     },

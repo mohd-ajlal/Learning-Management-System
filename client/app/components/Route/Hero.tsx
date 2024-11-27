@@ -168,11 +168,11 @@ const Hero: FC<Props> = () => {
         </p> */}
 
 <h2 className="dark:text-white text-[#000000c7] text-[30px] px-3 w-full 1000px:text-[70px] font-[600] font-Josefin py-2 1000px:leading-[75px] 1500px:w-[60%] 1100px:w-[78%]">
-              {data?.layout?.banner?.title}
+              {data?.layout?.banner?.title || "The Smart Choice For Future."}
             </h2>
             <br />
             <p className="dark:text-[#edfff4] text-[#000000ac] font-Josefin font-[600] text-[18px] 1500px:!w-[55%] 1100px:!w-[78%]">
-              {data?.layout?.banner?.subTitle}
+              {data?.layout?.banner?.subTitle || "Gravity is a global training provider across India."}
             </p>
             <br />
             <br />

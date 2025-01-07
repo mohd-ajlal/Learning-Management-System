@@ -16,30 +16,6 @@ const teamMembers = [
         avatar: "/assets/photo.jpg",
         bio: "Mohd Ajlal is the driving force behind our Learning Management System. As the Lead Full Stack Developer, he specializes in crafting scalable, efficient, and user-centric web applications. With a deep passion for innovation and a relentless commitment to excellence, Mohd has architected and developed the core features of the platform, ensuring a seamless blend of performance and functionality. His expertise and vision are the foundation of this transformative project, empowering education through technology."
     },
-    {
-      name: "Dheeraj Kumar",
-      role: "Full Stack Developer",
-      avatar: "/assets/dheeraj.webp",
-      bio: "Dheeraj is a problem-solving enthusiast who creates seamless back-end and front-end solutions with a focus on user experience.",
-    },
-    {
-      name: "Madhu Solanki",
-      role: "Front-end || Content Maker",
-      avatar: "/assets/madhu.jpg",
-      bio: "Madhu crafts engaging and educational content that bridges the gap between complex ideas and user understanding.",
-    },
-    {
-      name: "Arsh Agrawal",
-      role: "UI/UX Designer",
-      avatar: "/assets/arsh.jpg",
-      bio: "Arsh transforms ideas into visually stunning interfaces, ensuring intuitive and user-centric designs.",
-    },
-    {
-      name: "Abhishek Soni",
-      role: "UI/UX Designer",
-      avatar: "/assets/abhishek.jpg",
-      bio: "Abhishek creates elegant and functional designs, focusing on delivering exceptional user experiences.",
-    },
   ];
 
   

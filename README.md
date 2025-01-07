@@ -1,3 +1,6 @@
+
+
+
 # Learning Management System (LMS)
 
 The Learning Management System (LMS) is a comprehensive, full-stack web application desigacned to facilitate online education and training. It leverages modern web technologies to create a scalable, efficient, and engaging platform for students, educators, and administrators.
@@ -144,11 +147,7 @@ LMS-Project/
 
 ## 🤝 Contributors
 
-- **Mohd Ajlal**
-- **Dheeraj Kumar**
-- **Madhu Solanki**
-- **Arsh Agrawal**
-- **Abhishek Soni**
+- **Mohd Ajlal** 
 
 Feel free to contribute! Open an issue or submit a pull request.
 

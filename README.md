@@ -148,10 +148,6 @@ LMS-Project/
 ## 🤝 Contributors
 
 - **Mohd Ajlal** 
-- **Dheeraj Kumar**
-- **Madhu Solanki** 
-- **Arsh Agrawal** 
-- **Abhishek Soni**
 
 Feel free to contribute! Open an issue or submit a pull request.
 

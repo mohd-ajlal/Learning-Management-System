@@ -22,6 +22,7 @@ import { BackgroundBeamsWithCollision } from "../ui/background-beams-with-collis
 
 import web from "../../../public/assets/web.png"
 import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
+import Loader from "../Loader";
 
 const people = [
   {
@@ -66,7 +67,7 @@ const people = [
 type Props = {};
 
 const Hero: FC<Props> = () => {
-  const { data,refetch } = useGetHeroDataQuery("Banner", {});
+  const { data,refetch, isLoading } = useGetHeroDataQuery("Banner", {});
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -84,8 +85,12 @@ const Hero: FC<Props> = () => {
     });
   }, [api]);
   return (
-    
-    <div className="relative w-full flex flex-col lg:flex-row items-center lg:items-start py-10 lg:py-20 px-4 lg:px-8">
+    <>
+    {
+      isLoading?(
+        <Loader/>
+      ):(
+        <div className="relative w-full flex flex-col lg:flex-row items-center lg:items-start py-10 lg:py-20 px-4 lg:px-8">
       {/* Hero Image */}
       {/* <div className="mx-auto max-w-xs lg:ml-8">
         <Carousel
@@ -209,6 +214,10 @@ const Hero: FC<Props> = () => {
         
       </div>
     </div>
+      )
+    }
+    </>
+    
   );
 };
 

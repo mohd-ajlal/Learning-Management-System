@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Image from "next/image";
 import { BiSearch } from "react-icons/bi";
 import Link from "next/link";
@@ -23,6 +23,7 @@ import { BackgroundBeamsWithCollision } from "../ui/background-beams-with-collis
 import web from "../../../public/assets/web.png"
 import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
 import Loader from "../Loader";
+import { useRouter } from "next/navigation";
 
 const people = [
   {
@@ -71,6 +72,18 @@ const Hero: FC<Props> = () => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+
+  const [search, setSearch] = useState("");
+
+  const router = useRouter()
+
+  const handleSearch = () =>{
+    if(search === ""){
+      return;
+    }else{
+      router.push(`/courses?title=${search}`);
+    }
+  }
 
   React.useEffect(() => {
     if (!api) {
@@ -194,21 +207,21 @@ const Hero: FC<Props> = () => {
             View Courses
           </Link>
         </div>
-        {/* <div className="1500px:w-[55%] 1100px:w-[78%] w-[90%] h-[50px] bg-transparent relative">
+        <div className="1500px:w-[55%] 1100px:w-[78%] w-[90%] h-[50px] bg-transparent relative">
             <input
               type="search"
               className="bg-white border dark:border-none dark:bg-black dark:placeholder:tex-[#ffffffdd] rounded-[5px] p-2 w-full h-full outline-none text-[#0000004e]  dark:text-[#ffffffe6] text-[20px]  "
               placeholder="Search Courses...."
-              // value={search}
-              // onChange={(e:any) => setSearch(e.target.value)}
+              value={search}
+              onChange={(e:any) => setSearch(e.target.value)}
             />
 
             <div 
-            // onClick={handleSearch}
+            onClick={handleSearch}
             className="absolute flex items-center justify-center w-[50px] cursor-pointer h-[50px] right-0 top-0 bg-[#39c1f3] rounded-r-[5px]">
               <BiSearch className="text-white" size={30} />
             </div>
-          </div> */}
+          </div>
           <br />
           <br />
         

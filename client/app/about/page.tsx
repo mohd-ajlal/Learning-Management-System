@@ -6,7 +6,6 @@ import Header from "../components/Header";
 import Heading from "../utils/Heading";
 import Footer from "../components/Footer"
 
-type Props = {};
 
 
 const teamMembers = [
@@ -19,7 +18,7 @@ const teamMembers = [
   ];
 
   
-const page = (props: Props) => {
+const Page = () => {
     const [open, setOpen] = useState(false);
     const [activeItem, setActiveItem] = useState(1);
     const [route, setRoute] = useState("Login");
@@ -97,4 +96,4 @@ const page = (props: Props) => {
     };
     
   
-export default page
+export default Page

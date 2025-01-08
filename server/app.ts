@@ -10,6 +10,7 @@ import orderRouter from "./router/order.route";
 import notificationRouter from "./models/notification.route";
 import analyticsRouter from "./router/analytics.route";
 import layoutRouter from "./router/layout.route";
+import { rateLimit } from 'express-rate-limit'
 
 // body parser
 app.use(express.json({ limit: "50mb" }));
@@ -24,6 +25,17 @@ app.use(
     credentials:true
   })
 );
+
+// api request limiter
+
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+	standardHeaders: 'draft-8', // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+	// store: ... , // Redis, Memcached, etc. See below.
+})
+
 
 // routes
 
@@ -54,5 +66,7 @@ app.all(
     next(err);
   }
 );
+
+app.use(limiter)
 
 app.use(ErrorMiddleware);

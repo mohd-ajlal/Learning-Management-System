@@ -5,9 +5,9 @@ import AdminSidebar from "../../components/Admin/sidebar/AdminSidebar"
 import DashBoardHero from "../../components/Admin/DashBoardHero"
 import AdminProtected from '../../hooks/adminProtected'
 import EditCategories from "../../components/Admin/Customization/EditCategories"
-type Props = {}
+type Props = object
 
-const page:FC<Props> = (props) => {
+const page:FC<Props> = () => {
   return (
     <div>
     <AdminProtected>

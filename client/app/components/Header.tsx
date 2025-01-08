@@ -105,7 +105,7 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
     if (data === null && !isLoading && !userData) {
       setLogout(true); 
     }
-  }, [data, userData,isLoading,isSuccess]);
+  }, [data, userData, isLoading, isSuccess, refetch, socialAuth]);
 
   // if (typeof window !== "undefined") {
   //   window.addEventListener("scroll", () => {
@@ -204,11 +204,31 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
                         isMobile={true}
                 />
 
-            <HiOutlineUserCircle
-                size={25}
-                className="cursor-pointer ml-5 my-2 dark:text-white  text-black"
-                onClick={()=>setOpen(true)}
-                /> 
+{
+            user? (
+            <Link href={"/profile"}>
+            <Image
+                src={user.avatar ? user.avatar.url : avatar}
+                alt={user?.name || "User Avatar"}
+                className="w-[30px] h-[30px] rounded-full ml-[20px] cursor-pointer"
+                width={30}
+                height={30}
+
+                style={{border:activeItem === 6 ? "2px solid #ffc107" : "none"}}
+
+            />
+            </Link>
+              
+            
+              
+            ):(
+              <HiOutlineUserCircle
+              size={25}
+              className="hidden 900px:block cursor-pointer dark:text-white  text-black"
+              onClick={()=>setOpen(true)}
+              />
+            )
+           }
 
                 <br />
                 <br />
@@ -230,6 +250,7 @@ const Header: FC<Props> = ({activeItem, setOpen, route, open, setRoute}) => {
               activeItem={activeItem}
               setRoute={setRoute}
               component={Login}
+              refetch={refetch}
               />
             )
           }

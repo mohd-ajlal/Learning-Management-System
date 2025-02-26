@@ -1,6 +1,6 @@
 import { styles } from "@/app/styles/style";
 import { useActivationMutation } from "@/redux/features/auth/authApi";
-import { setIn } from "formik";
+// import { setIn } from "formik";
 import React, { FC, useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
@@ -43,7 +43,7 @@ const [activation, {isSuccess, error}]= useActivationMutation()
         console.log("An error occured", error)
       }
     }
-  }, [isSuccess, error])
+  }, [isSuccess, error, setRoute])
   
   const inputRefs = [
     useRef<HTMLInputElement>(null),
